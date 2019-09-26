@@ -9,6 +9,8 @@ TagManager:
   - upLimitTag
   - groundTag
   - meteorTag
+  - leftWallTag
+  - rightWallTag
   layers:
   - Default
   - TransparentFX

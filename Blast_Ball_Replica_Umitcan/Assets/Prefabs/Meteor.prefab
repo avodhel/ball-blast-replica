@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1819908707812841573}
   - component: {fileID: 1819908707812841571}
   - component: {fileID: 1819908707812841572}
-  - component: {fileID: 1819908707812841575}
+  - component: {fileID: 4973111204326696640}
   - component: {fileID: 1819908707812841570}
   m_Layer: 0
   m_Name: Meteor
@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca9781134759934db0972c6a3ff8065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minScale: 1.51
+  maxScale: 3.51
   colors:
   - {r: 0.8301887, g: 0.27803493, b: 0.27803493, a: 1}
   - {r: 0.8679245, g: 0.15966538, b: 0.5694479, a: 1}
@@ -100,8 +102,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &1819908707812841575
-PolygonCollider2D:
+--- !u!58 &4973111204326696640
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -114,29 +116,8 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.46}
-    newSize: {x: 0.48, y: 0.46}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.0008364748, y: 0.23628259}
-      - {x: -0.027434971, y: 0.217435}
-      - {x: -0.07115242, y: 0.18429363}
-      - {x: -0.10991813, y: 0.16396141}
-      - {x: -0.24628247, y: 0.05487001}
-      - {x: -0.22115241, y: -0.04685867}
-      - {x: -0.16486993, y: -0.18314123}
-      - {x: -0.15429373, y: -0.23000002}
-      - {x: 0.14230473, y: -0.23000002}
-      - {x: 0.2085875, y: -0.07570636}
-      - {x: 0.23999998, y: 0.058587432}
-      - {x: 0.06801114, y: 0.18429363}
+  serializedVersion: 2
+  m_Radius: 0.24
 --- !u!50 &1819908707812841570
 Rigidbody2D:
   serializedVersion: 4
@@ -156,5 +137,5 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
