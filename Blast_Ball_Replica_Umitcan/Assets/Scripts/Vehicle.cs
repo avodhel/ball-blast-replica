@@ -5,10 +5,14 @@ using UnityEngine;
 public class Vehicle : MonoBehaviour
 {
     [Header("Speed")]
+    [Range(0f, 10f)]
     public float vehicleSpeed = 3.3f;
     [Header("Stay on Screen")]
-    public float maxX;
-    public float minX;
+    public float maxX = 3.2f;
+    public float minX = -3.3f;
+    [Header("Shoot")]
+    public Transform aim;
+    public GameObject missile;
 
     float horizontal = 0f;
 
@@ -17,17 +21,18 @@ public class Vehicle : MonoBehaviour
 
     void Start()
     {
-        physic = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        
+        getComponents();
     }
 
     void FixedUpdate()
     {
         vehicleMove();
+        shoot();
+    }
+
+    void getComponents()
+    {
+        physic = GetComponent<Rigidbody2D>();
     }
 
     void vehicleMove()
@@ -42,5 +47,13 @@ public class Vehicle : MonoBehaviour
         Mathf.Clamp(physic.position.x, minX, maxX),
         transform.position.y
         );
+    }
+
+    void shoot()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            Instantiate(missile, aim.position, aim.rotation);
+        }
     }
 }
