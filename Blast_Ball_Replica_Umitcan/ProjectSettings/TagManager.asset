@@ -6,6 +6,7 @@ TagManager:
   tags:
   - vehicleTag
   - missileTag
+  - upLimitTag
   layers:
   - Default
   - TransparentFX

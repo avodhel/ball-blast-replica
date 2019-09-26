@@ -23,6 +23,14 @@ public class Missile : MonoBehaviour
 
     void force()
     {
-        physic.velocity = transform.up * missileSpeed;
+        physic.velocity = transform.up * missileSpeed; //apply force to missile
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "upLimitTag") //when missile reach to upper limit destroy it
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -13,6 +13,7 @@ public class Vehicle : MonoBehaviour
     [Header("Shoot")]
     public Transform aim;
     public GameObject missile;
+    public GameObject missileContainer;
 
     float horizontal = 0f;
 
@@ -53,7 +54,7 @@ public class Vehicle : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            Instantiate(missile, aim.position, aim.rotation);
+            (Instantiate(missile, aim.position, aim.rotation)as GameObject).transform.parent = missileContainer.transform;
         }
     }
 }
