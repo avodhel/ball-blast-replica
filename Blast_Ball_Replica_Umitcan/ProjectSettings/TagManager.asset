@@ -7,6 +7,8 @@ TagManager:
   - vehicleTag
   - missileTag
   - upLimitTag
+  - groundTag
+  - meteorTag
   layers:
   - Default
   - TransparentFX

@@ -52,7 +52,7 @@ public class Vehicle : MonoBehaviour
 
     void shoot()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump"))
         {
             (Instantiate(missile, aim.position, aim.rotation)as GameObject).transform.parent = missileContainer.transform;
         }
