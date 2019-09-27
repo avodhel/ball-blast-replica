@@ -18,6 +18,8 @@ public class Meteor : MonoBehaviour
     Rigidbody2D physic;
     SpriteRenderer sRenderer;
 
+    [HideInInspector]
+    public bool startControl = false;
     bool bounceRight = false;
     bool bounceLeft = false;
 
@@ -25,8 +27,22 @@ public class Meteor : MonoBehaviour
     {
         getComponents();
         assignFeatures();
-        bounceMeteor();
-        bounceAccToScale();
+        meteorActivate();
+    }
+
+    public void meteorActivate()
+    {
+        if (startControl)
+        {
+            physic.bodyType = RigidbodyType2D.Dynamic;
+
+            bounceMeteor();
+            bounceAccToScale();
+        }
+        else
+        {
+            physic.bodyType = RigidbodyType2D.Static;
+        }
     }
 
     private void Update()
