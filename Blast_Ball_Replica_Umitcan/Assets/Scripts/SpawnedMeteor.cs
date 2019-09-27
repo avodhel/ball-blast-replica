@@ -16,6 +16,7 @@ public class SpawnedMeteor : Meteor
         getComponents();
         assignFeatures();
         meteorActivate();
+        metDurability("determine");
     }
 
     public void meteorActivate()

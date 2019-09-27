@@ -9,6 +9,7 @@ public class SplitMeteor : Meteor
     {
         getComponents();
         bounceAccToScale();
+        metDurability("determine");
     }
 
     public void bounceSplitMeteor(GameObject splitMet, string whichSide)

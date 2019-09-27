@@ -844,7 +844,7 @@ PrefabInstance:
     - target: {fileID: 5324561277072619410, guid: 5e6d002d7f239ba43bd38c119743239d,
         type: 3}
       propertyPath: shootRate
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e6d002d7f239ba43bd38c119743239d, type: 3}

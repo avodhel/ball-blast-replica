@@ -51,7 +51,14 @@ MonoBehaviour:
   minScale: 1.5
   maxScale: 8
   splitMeteor: {fileID: 1961137283778995267}
+  minDurability: 1
+  maxDurability: 5
   durabilityText: {fileID: 1931236721045395430}
+  physic: {fileID: 0}
+  sRenderer: {fileID: 0}
+  spawnControl: {fileID: 0}
+  bounceRight: 0
+  bounceLeft: 0
 --- !u!212 &1961137283778995268
 SpriteRenderer:
   m_ObjectHideFlags: 0

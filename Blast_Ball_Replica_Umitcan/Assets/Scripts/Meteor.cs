@@ -16,9 +16,11 @@ public class Meteor : MonoBehaviour
     [Header("Split")]
     public GameObject splitMeteor;
     [Header("Durability")]
+    [Range(1, 100)]
+    public int minDurability = 1;
+    [Range(1, 100)]
+    public int maxDurability = 5;
     public Text durabilityText;
-    [Range(0.1f, 100f)]
-    public float durability = 1f;
 
     [HideInInspector]
     public Rigidbody2D physic;
@@ -30,10 +32,13 @@ public class Meteor : MonoBehaviour
     public bool bounceRight = false;
     [HideInInspector]
     public bool bounceLeft = false;
+    
+    int randDur = 1;
 
     public void Start()
     {
         getComponents();
+        metDurability("determine");
     }
 
     public void Update()
@@ -46,6 +51,19 @@ public class Meteor : MonoBehaviour
         physic = GetComponent<Rigidbody2D>();
         sRenderer = GetComponent<SpriteRenderer>();
         spawnControl = GameObject.FindGameObjectWithTag("spawnControlTag");
+    }
+
+    public void metDurability(string condition) //meteor durability
+    {
+        if (condition == "determine")
+        {
+            randDur = Random.Range(minDurability, maxDurability);
+        }
+        if (condition == "reduce")
+        {
+            randDur -= 1;
+        }
+        durabilityText.text = randDur.ToString();
     }
 
     void rotateMeteor()
@@ -106,15 +124,16 @@ public class Meteor : MonoBehaviour
 
     public void destroyOrSplit(GameObject parentMeteor, Vector3 scale, Vector3 pos, Quaternion rot, Color color)
     {
-        Debug.Log("Scale: " + scale);
-        Debug.Log("Position: " + pos);
-        Debug.Log("Color: " + color);
-
-        Destroy(parentMeteor);
-
-        if (scale.x * 0.5f > minScale)
+        metDurability("reduce"); //reduce durability
+        if (randDur == 0)
         {
-            spawnControl.GetComponent<SpawnControl>().insSplitMeteor(parentMeteor, scale, pos, rot, color); //instance split meteors
+            Destroy(parentMeteor);
+
+            //spawn split meteors
+            if (scale.x * 0.5f > minScale)
+            {
+                spawnControl.GetComponent<SpawnControl>().insSplitMeteor(scale, pos, rot, color); //instance split meteors
+            }
         }
     }
 }

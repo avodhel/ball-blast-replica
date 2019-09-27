@@ -62,7 +62,7 @@ public class SpawnControl : MonoBehaviour
         }
     }
 
-    public void insSplitMeteor(GameObject parentMeteor, Vector3 scale, Vector3 pos, Quaternion rot, Color color) //instance split meteors
+    public void insSplitMeteor(Vector3 scale, Vector3 pos, Quaternion rot, Color color) //instance split meteors
     {
         for (int i = 0; i < 2; i++)
         {
