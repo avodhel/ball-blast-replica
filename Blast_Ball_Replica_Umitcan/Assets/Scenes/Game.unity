@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b5545a65c9a8a479b4e7abd2d32a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnTime: 5
   meteor: {fileID: 1819908707812841574, guid: 3b624d7e1e635dc49b1cd791153a6b9e, type: 3}
   leftSpawnPoint: {fileID: 1754215057}
   leftTargetPoint: {fileID: 1977466852}

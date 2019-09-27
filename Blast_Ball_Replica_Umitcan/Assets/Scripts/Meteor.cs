@@ -20,6 +20,8 @@ public class Meteor : MonoBehaviour
 
     [HideInInspector]
     public bool startControl = false;
+    //[HideInInspector]
+    //public bool moveToTargetControl = true; //after spawn move to target
     bool bounceRight = false;
     bool bounceLeft = false;
 
@@ -32,14 +34,14 @@ public class Meteor : MonoBehaviour
 
     public void meteorActivate()
     {
-        if (startControl)
+        if (startControl) //meteor is ready to game
         {
             physic.bodyType = RigidbodyType2D.Dynamic;
 
             bounceMeteor();
             bounceAccToScale();
         }
-        else
+        else //meteor is still on the road
         {
             physic.bodyType = RigidbodyType2D.Static;
         }
