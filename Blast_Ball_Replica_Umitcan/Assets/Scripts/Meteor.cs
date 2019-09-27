@@ -32,11 +32,17 @@ public class Meteor : MonoBehaviour
         meteorActivate();
     }
 
+    private void Update()
+    {
+        rotateMeteor();
+    }
+
     public void meteorActivate()
     {
-        if (startControl) //meteor is ready to game
+        if (startControl) //meteor is ready for game
         {
             physic.bodyType = RigidbodyType2D.Dynamic;
+            gameObject.GetComponent<CircleCollider2D>().enabled = true;
 
             bounceMeteor();
             bounceAccToScale();
@@ -44,12 +50,8 @@ public class Meteor : MonoBehaviour
         else //meteor is still on the road
         {
             physic.bodyType = RigidbodyType2D.Static;
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }
-    }
-
-    private void Update()
-    {
-        rotateMeteor();
     }
 
     void getComponents()

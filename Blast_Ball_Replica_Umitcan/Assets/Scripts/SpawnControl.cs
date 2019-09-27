@@ -15,6 +15,8 @@ public class SpawnControl : MonoBehaviour
     public Transform rightTargetPoint;
 
     GameObject meteorClone;
+    Transform selectedTargetSide;
+    Transform selectedSpawnSide;
 
     private float nextSpawn = 0.0f;
     bool moveToTargetControl = true; //meteor moves to target point until reach it
@@ -32,14 +34,21 @@ public class SpawnControl : MonoBehaviour
     void getComponents()
     {
         meteorClone = meteor.gameObject;
+        //default side
+        selectedTargetSide = rightTargetPoint;
+        selectedSpawnSide = rightSpawnPoint;
     }
 
     void insMeteor()
     {
         if (Time.time > nextSpawn)
         {
+            //calculate spawn time
             nextSpawn = Time.time + spawnTime;
-            meteorClone = Instantiate(meteor, leftSpawnPoint.position, leftSpawnPoint.rotation);
+            //spawn side
+            chooseSpawnSide();
+            //instance meteor
+            meteorClone = Instantiate(meteor, selectedSpawnSide.position, selectedSpawnSide.rotation);
             moveToTargetControl = true;
         }
 
@@ -49,11 +58,26 @@ public class SpawnControl : MonoBehaviour
         }
     }
 
+    void chooseSpawnSide()
+    {
+        float possibility = Random.Range(0f, 100f);
+        if (possibility < 50f)
+        {
+            selectedSpawnSide = leftSpawnPoint;
+            selectedTargetSide = leftTargetPoint;
+        }
+        else
+        {
+            selectedSpawnSide = rightSpawnPoint;
+            selectedTargetSide = rightTargetPoint;
+        }
+    }
+
     void moveToTarget()
     {
         float step = 2 * Time.deltaTime; // calculate distance to move
-        meteorClone.transform.position = Vector3.MoveTowards(meteorClone.transform.position, leftTargetPoint.position, step);
-        if (leftTargetPoint.position == meteorClone.transform.position)
+        meteorClone.transform.position = Vector3.MoveTowards(meteorClone.transform.position, selectedTargetSide.position, step);
+        if (selectedTargetSide.position == meteorClone.transform.position) //when meteor reach the target point
         {
             moveToTargetControl = false;
             meteorClone.GetComponent<Meteor>().startControl = true;
