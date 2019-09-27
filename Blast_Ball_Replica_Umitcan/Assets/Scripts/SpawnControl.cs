@@ -62,7 +62,7 @@ public class SpawnControl : MonoBehaviour
         }
     }
 
-    public void insSplitMeteor(Vector3 scale, Vector3 pos, Quaternion rot, Color color) //instance split meteors
+    public void insSplitMeteor(Vector3 scale, Vector3 pos, Quaternion rot, Color color, int parentDur) //instance split meteors
     {
         for (int i = 0; i < 2; i++)
         {
@@ -76,7 +76,7 @@ public class SpawnControl : MonoBehaviour
                 insSplitMet.transform.position += new Vector3(-0.3f, 0f, 0f);
                 insSplitMet.GetComponent<SplitMeteor>().bounceSplitMeteor(insSplitMet, "left");
             }
-            else
+            else if(i == 1)
             {
                 insSplitMet.transform.position += new Vector3(0.3f, 0f, 0f);
                 insSplitMet.GetComponent<SplitMeteor>().bounceSplitMeteor(insSplitMet, "right");
@@ -88,6 +88,8 @@ public class SpawnControl : MonoBehaviour
             //!!! after second split these components disabled itself
             insSplitMet.GetComponent<SplitMeteor>().enabled = true;
             insSplitMet.GetComponent<CircleCollider2D>().enabled = true;
+            //durability
+            insSplitMet.GetComponent<SplitMeteor>().maxDurability = parentDur; //splitmeteor's durability can't more than it's parent's durability
         }
     }
 

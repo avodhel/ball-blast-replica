@@ -32,8 +32,10 @@ public class Meteor : MonoBehaviour
     public bool bounceRight = false;
     [HideInInspector]
     public bool bounceLeft = false;
-    
-    int randDur = 1;
+    [HideInInspector]
+    public int randDur = 1;
+    [HideInInspector]
+    public int parentDur = 1;
 
     public void Start()
     {
@@ -53,7 +55,7 @@ public class Meteor : MonoBehaviour
         spawnControl = GameObject.FindGameObjectWithTag("spawnControlTag");
     }
 
-    public void metDurability(string condition) //meteor durability
+    protected virtual void metDurability(string condition) //meteor durability
     {
         if (condition == "determine")
         {
@@ -125,14 +127,14 @@ public class Meteor : MonoBehaviour
     public void destroyOrSplit(GameObject parentMeteor, Vector3 scale, Vector3 pos, Quaternion rot, Color color)
     {
         metDurability("reduce"); //reduce durability
-        if (randDur == 0)
+        if (randDur == 0) //when durability is 0
         {
-            Destroy(parentMeteor);
+            Destroy(parentMeteor); //destroy parent meteor
 
             //spawn split meteors
             if (scale.x * 0.5f > minScale)
             {
-                spawnControl.GetComponent<SpawnControl>().insSplitMeteor(scale, pos, rot, color); //instance split meteors
+                spawnControl.GetComponent<SpawnControl>().insSplitMeteor(scale, pos, rot, color, parentDur); //instance split meteors
             }
         }
     }

@@ -39,8 +39,7 @@ public class Missile : MonoBehaviour
         if (col.gameObject.tag == "meteorTag" ||
             col.gameObject.tag == "splitMeteorTag") //when missile hit the meteor
         {
-            Debug.Log("Meteor Destroyed");
-            Destroy(gameObject);
+            Destroy(gameObject); //after hit destroy missile
 
             //script choose
             if (col.gameObject.tag == "meteorTag")

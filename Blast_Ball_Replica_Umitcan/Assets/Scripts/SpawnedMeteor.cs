@@ -19,6 +19,15 @@ public class SpawnedMeteor : Meteor
         metDurability("determine");
     }
 
+    protected override void metDurability(string condition)
+    {
+        base.metDurability(condition);
+        if (condition == "determine")
+        {
+            parentDur = randDur; //save parent's durability
+        }
+    }
+
     public void meteorActivate()
     {
         if (startControl) //meteor is ready for game
