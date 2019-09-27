@@ -12,6 +12,7 @@ TagManager:
   - leftWallTag
   - rightWallTag
   - splitMeteorTag
+  - spawnControlTag
   layers:
   - Default
   - TransparentFX
