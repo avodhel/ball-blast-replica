@@ -64,7 +64,8 @@ public class Vehicle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "meteorTag")
+        if (col.gameObject.tag == "meteorTag" || 
+            col.gameObject.tag == "splitMeteorTag")
         {
             Debug.Log("Game Over");
         }

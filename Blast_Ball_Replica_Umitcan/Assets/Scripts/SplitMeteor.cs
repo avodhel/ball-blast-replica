@@ -24,7 +24,7 @@ public class SplitMeteor : MonoBehaviour
     void Start()
     {
         getComponents();
-        bounceMeteor();
+        //bounceSplitMeteor();
         bounceAccToScale();
     }
 
@@ -44,17 +44,17 @@ public class SplitMeteor : MonoBehaviour
         transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)) * Time.deltaTime);
     }
 
-    void bounceMeteor()
+    public void bounceSplitMeteor(GameObject splitMet, string whichSide)
     {
-        if (gameObject.transform.position.x < 0) //when spawned left side
+        if (whichSide == "right")
         {
-            this.physic.velocity = new Vector2(1f, -bounceForce / 2); //bounce right
+            splitMet.GetComponent<Rigidbody2D>().velocity = new Vector2(1f, -bounceForce / 2); //bounce right
             bounceRight = true;
             bounceLeft = false;
         }
-        if (gameObject.transform.position.x > 0) //when spawned right side
+        if (whichSide == "left")
         {
-            this.physic.velocity = new Vector2(-1f, -bounceForce / 2); //bounce left
+            splitMet.GetComponent<Rigidbody2D>().velocity = new Vector2(-1f, -bounceForce / 2); //bounce left
             bounceLeft = true;
             bounceRight = false;
         }
@@ -123,7 +123,22 @@ public class SplitMeteor : MonoBehaviour
         {
             for (int i = 0; i < 2; i++)
             {
+                //instance split meteors
                 GameObject insSplitMet = Instantiate(splitMeteor, pos, rot);
+
+                //seperate split meteors
+                if (i == 0)
+                {
+                    insSplitMet.transform.position += new Vector3(-0.3f, 0f, 0f);
+                    insSplitMet.GetComponent<SplitMeteor>().bounceSplitMeteor(insSplitMet, "left");
+                }
+                else
+                {
+                    insSplitMet.transform.position += new Vector3(0.3f, 0f, 0f);
+                    insSplitMet.GetComponent<SplitMeteor>().bounceSplitMeteor(insSplitMet, "right");
+                }
+
+                // assign some values to split meteors
                 insSplitMet.GetComponent<SpriteRenderer>().color = color;
                 insSplitMet.transform.localScale = scale * 0.5f;
                 //!!! after second split these components disabled itself
