@@ -61,4 +61,12 @@ public class Vehicle : MonoBehaviour
             (Instantiate(missile, aim.position, aim.rotation)as GameObject).transform.parent = missileContainer.transform;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "meteorTag")
+        {
+            Debug.Log("Game Over");
+        }
+    }
 }

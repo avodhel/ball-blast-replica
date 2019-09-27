@@ -33,4 +33,14 @@ public class Missile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "meteorTag") //when missile hit the meteor
+        {
+            Debug.Log("Meteor Destroyed");
+            Destroy(gameObject);
+            Destroy(col.gameObject);
+        }
+    }
 }

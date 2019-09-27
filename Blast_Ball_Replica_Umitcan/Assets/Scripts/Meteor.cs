@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
-    [Header("Throw")]
+    [Header("Bounce")]
     [Range(0f, 25f)]
-    public float throwSpeed = 6f;
+    public float bounceForce = 6f;
     [Header("Scale")]
     [Range(0.1f, 5f)]
     public float minScale = 0.5f;
@@ -18,8 +18,8 @@ public class Meteor : MonoBehaviour
     Rigidbody2D physic;
     SpriteRenderer sRenderer;
 
-    bool throwRight = false;
-    bool throwLeft = false;
+    bool bounceRight = false;
+    bool bounceLeft = false;
 
     void Start()
     {
@@ -54,15 +54,15 @@ public class Meteor : MonoBehaviour
     {
         if (gameObject.transform.position.x < 0) //left side
         {
-            this.physic.velocity = new Vector2(1f, -throwSpeed/2); //throw right
-            throwRight = true;
-            throwLeft = false;
+            this.physic.velocity = new Vector2(1f, -bounceForce / 2); //throw right
+            bounceRight = true;
+            bounceLeft = false;
         }
         if (gameObject.transform.position.x > 0) //right side
         {
-            this.physic.velocity = new Vector2(-1f, -throwSpeed / 2); //throw left
-            throwLeft = true;
-            throwRight = false;
+            this.physic.velocity = new Vector2(-1f, -bounceForce / 2); //throw left
+            bounceLeft = true;
+            bounceRight = false;
         }
     }
 
@@ -70,32 +70,58 @@ public class Meteor : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)) * Time.deltaTime);
     }
-    //-------------------------------------------------------------------------------------------------------------------------
 
-    private void OnCollisionEnter2D(Collision2D col)
+    //private void OnCollisionEnter2D(Collision2D col)
+    //{
+    //    if (col.gameObject.tag == "groundTag")
+    //    {
+    //        if (throwRight)
+    //        {
+    //            this.physic.velocity = new Vector2(1f, throwSpeed); //throw right
+    //        }
+    //        else if (throwLeft)
+    //        {
+    //            this.physic.velocity = new Vector2(-1f, throwSpeed); //throw left
+    //        }
+    //    }
+    //    if (col.gameObject.tag == "leftWallTag")
+    //    {
+    //        this.physic.velocity = new Vector2(1f, -throwSpeed / 2);
+    //        throwRight = true;
+    //        throwLeft = false;
+    //    }
+    //    if (col.gameObject.tag == "rightWallTag")
+    //    {
+    //        this.physic.velocity = new Vector2(-1f, -throwSpeed / 2);
+    //        throwLeft = true;
+    //        throwRight = false;
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "groundTag")
+        if (col.gameObject.tag == "groundTag") //when meteor hit the ground
         {
-            if (throwRight)
+            if (bounceRight)
             {
-                this.physic.velocity = new Vector2(1f, throwSpeed); //throw right
+                this.physic.velocity = new Vector2(1f, bounceForce); //bounce  to right
             }
-            else if (throwLeft)
+            else if (bounceLeft)
             {
-                this.physic.velocity = new Vector2(-1f, throwSpeed); //throw left
+                this.physic.velocity = new Vector2(-1f, bounceForce); //bounce to left
             }
         }
-        if (col.gameObject.tag == "leftWallTag")
+        if (col.gameObject.tag == "leftWallTag") //when meteor hit the left wall
         {
-            this.physic.velocity = new Vector2(1f, -throwSpeed / 2);
-            throwRight = true;
-            throwLeft = false;
+            this.physic.velocity = new Vector2(1f, -bounceForce / 2); //bounce  to right
+            bounceRight = true;
+            bounceLeft = false;
         }
-        if (col.gameObject.tag == "rightWallTag")
+        if (col.gameObject.tag == "rightWallTag") //when meteor hit the right wall
         {
-            this.physic.velocity = new Vector2(-1f, -throwSpeed / 2);
-            throwLeft = true;
-            throwRight = false;
+            this.physic.velocity = new Vector2(-1f, -bounceForce / 2); //bounce to left
+            bounceLeft = true;
+            bounceRight = false;
         }
     }
 
