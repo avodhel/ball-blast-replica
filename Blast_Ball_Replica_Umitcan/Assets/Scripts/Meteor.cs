@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Meteor : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Meteor : MonoBehaviour
     public Color[] colors;
     [Header("Split")]
     public GameObject splitMeteor;
+    [Header("Durability")]
+    public Text durabilityText;
 
     Rigidbody2D physic;
     SpriteRenderer sRenderer;

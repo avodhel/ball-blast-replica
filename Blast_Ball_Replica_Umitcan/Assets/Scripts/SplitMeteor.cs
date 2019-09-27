@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SplitMeteor : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class SplitMeteor : MonoBehaviour
     public float maxScale = 8f;
     [Header("Split")]
     public GameObject splitMeteor;
+    [Header("Durability")]
+    public Text durabilityText;
 
     Rigidbody2D physic;
     SpriteRenderer sRenderer;
