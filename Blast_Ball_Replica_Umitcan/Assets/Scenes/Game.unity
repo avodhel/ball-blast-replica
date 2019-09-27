@@ -545,6 +545,7 @@ MonoBehaviour:
   aim: {fileID: 1133812567}
   missile: {fileID: 6451838432758693378, guid: f47737d7e714eb24daa9c46b0144a367, type: 3}
   missileContainer: {fileID: 1665348550}
+  fireRate: 0.5
 --- !u!1 &980530228
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,6 +937,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819908707812841571, guid: 3b624d7e1e635dc49b1cd791153a6b9e,
+        type: 3}
+      propertyPath: throwSpeed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1819908707812841570, guid: 3b624d7e1e635dc49b1cd791153a6b9e,
         type: 3}

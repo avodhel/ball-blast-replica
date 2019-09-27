@@ -11,10 +11,13 @@ public class Vehicle : MonoBehaviour
     public float maxX = 3.2f;
     public float minX = -3.3f;
     [Header("Shoot")]
+    [Range(0f, 5f)]
+    public float shootRate = 0.5f;
     public Transform aim;
     public GameObject missile;
     public GameObject missileContainer;
 
+    private float nextShoot = 0.0f;
     float horizontal = 0f;
 
     Vector3 vec;
@@ -52,8 +55,9 @@ public class Vehicle : MonoBehaviour
 
     void shoot()
     {
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") && Time.time > nextShoot)
         {
+            nextShoot = Time.time + shootRate;
             (Instantiate(missile, aim.position, aim.rotation)as GameObject).transform.parent = missileContainer.transform;
         }
     }
