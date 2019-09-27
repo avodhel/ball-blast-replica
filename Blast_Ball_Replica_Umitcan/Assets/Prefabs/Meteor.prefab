@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1819908707812841573}
-  - component: {fileID: 1819908707812841571}
+  - component: {fileID: 1814157149430793314}
   - component: {fileID: 1819908707812841572}
   - component: {fileID: 4973111204326696640}
   - component: {fileID: 1819908707812841570}
@@ -28,14 +28,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819908707812841574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.079020545, y: 0.0903092, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5593349313471561672}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1819908707812841571
+--- !u!114 &1814157149430793314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,21 +44,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1819908707812841574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca9781134759934db0972c6a3ff8065, type: 3}
+  m_Script: {fileID: 11500000, guid: 566f37fcc8af5154783b80f1388e42b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bounceForce: 6
   minScale: 1.5
   maxScale: 8
   colors:
-  - {r: 0.8301887, g: 0.27803493, b: 0.27803493, a: 1}
-  - {r: 0.8679245, g: 0.15966538, b: 0.5694479, a: 1}
-  - {r: 0.09852261, g: 0.49150014, b: 0.7735849, a: 1}
-  - {r: 0.297278, g: 0.8962264, b: 0.2240566, a: 1}
-  - {r: 0.8490566, g: 0.5052016, b: 0.20425417, a: 1}
+  - {r: 0.8396226, g: 0.2415895, b: 0.2415895, a: 1}
+  - {r: 0.19744569, g: 0.6593184, b: 0.8207547, a: 1}
+  - {r: 0.39213687, g: 0.81960785, b: 0.19607843, a: 1}
+  - {r: 0.8584906, g: 0.20652366, b: 0.6702419, a: 1}
+  - {r: 0.9339623, g: 0.5586545, b: 0.14538093, a: 1}
   splitMeteor: {fileID: 1961137283778995267, guid: 4b887b588ce3a374e887c0d10960697b,
     type: 3}
   durabilityText: {fileID: 4446297939720066130}
+  durability: 1
   startControl: 0
 --- !u!212 &1819908707812841572
 SpriteRenderer:

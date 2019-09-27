@@ -113,8 +113,8 @@ public class SpawnControl : MonoBehaviour
         if (selectedTargetSide.position == meteorClone.transform.position) //when meteor reach the target point
         {
             moveToTargetControl = false;
-            meteorClone.GetComponent<Meteor>().startControl = true;
-            meteorClone.GetComponent<Meteor>().meteorActivate();
+            meteorClone.GetComponent<SpawnedMeteor>().startControl = true;
+            meteorClone.GetComponent<SpawnedMeteor>().meteorActivate();
         }
     }
 }

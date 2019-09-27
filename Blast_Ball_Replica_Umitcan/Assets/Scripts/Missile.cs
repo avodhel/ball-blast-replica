@@ -45,7 +45,7 @@ public class Missile : MonoBehaviour
             //script choose
             if (col.gameObject.tag == "meteorTag")
             {
-                col.gameObject.GetComponent<Meteor>().destroyOrSplit(col.gameObject,
+                col.gameObject.GetComponent<SpawnedMeteor>().destroyOrSplit(col.gameObject,
                                                         col.gameObject.transform.localScale,
                                                         col.gameObject.transform.position,
                                                         col.gameObject.transform.rotation,

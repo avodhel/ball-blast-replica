@@ -13,86 +13,47 @@ public class Meteor : MonoBehaviour
     public float minScale = 1.5f;
     [Range(0.1f, 15f)]
     public float maxScale = 8f;
-    [Header("Colors")]
-    public Color[] colors;
     [Header("Split")]
     public GameObject splitMeteor;
     [Header("Durability")]
     public Text durabilityText;
-
-    Rigidbody2D physic;
-    SpriteRenderer sRenderer;
-    GameObject spawnControl;
+    [Range(0.1f, 100f)]
+    public float durability = 1f;
 
     [HideInInspector]
-    public bool startControl = false;
-    bool bounceRight = false;
-    bool bounceLeft = false;
+    public Rigidbody2D physic;
+    [HideInInspector]
+    public SpriteRenderer sRenderer;
+    [HideInInspector]
+    public GameObject spawnControl;
+    [HideInInspector]
+    public bool bounceRight = false;
+    [HideInInspector]
+    public bool bounceLeft = false;
 
-    void Start()
+    public void Start()
     {
         getComponents();
-        assignFeatures();
-        meteorActivate();
     }
 
-    private void Update()
+    public void Update()
     {
         rotateMeteor();
     }
 
-    public void meteorActivate()
-    {
-        if (startControl) //meteor is ready for game
-        {
-            physic.bodyType = RigidbodyType2D.Dynamic;
-            gameObject.GetComponent<CircleCollider2D>().enabled = true;
-
-            bounceMeteor();
-            bounceAccToScale();
-        }
-        else //meteor is still on the road
-        {
-            physic.bodyType = RigidbodyType2D.Static;
-            gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        }
-    }
-
-    void getComponents()
+    public void getComponents()
     {
         physic = GetComponent<Rigidbody2D>();
         sRenderer = GetComponent<SpriteRenderer>();
         spawnControl = GameObject.FindGameObjectWithTag("spawnControlTag");
     }
 
-    void assignFeatures()
+    void rotateMeteor()
     {
-        //random color
-        sRenderer.color = colors[Random.Range(0, colors.Length)];
-        //random rotation
-        transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, Random.Range(0f, 360f)));
-        //random scale
-        float scale = Random.Range(minScale, maxScale);
-        transform.localScale = new Vector3(scale, scale, scale);
+        transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)) * Time.deltaTime);
     }
 
-    void bounceMeteor()
-    {
-        if (gameObject.transform.position.x < 0) //when spawned left side
-        {
-            this.physic.velocity = new Vector2(1f, -bounceForce / 2); //bounce right
-            bounceRight = true;
-            bounceLeft = false;
-        }
-        if (gameObject.transform.position.x > 0) //when spawned right side
-        {
-            this.physic.velocity = new Vector2(-1f, -bounceForce / 2); //bounce left
-            bounceLeft = true;
-            bounceRight = false;
-        }
-    }
-
-    void bounceAccToScale() //bounce according to scale
+    public void bounceAccToScale() //bounce according to scale
     {
         if (this.gameObject.transform.localScale.x > minScale && gameObject.transform.localScale.x <= 2f)
         {
@@ -116,12 +77,7 @@ public class Meteor : MonoBehaviour
         }
     }
 
-    void rotateMeteor()
-    {
-        transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)) * Time.deltaTime);
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "groundTag") //when meteor hit the ground
         {
