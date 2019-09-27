@@ -36,11 +36,29 @@ public class Missile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "meteorTag") //when missile hit the meteor
+        if (col.gameObject.tag == "meteorTag" ||
+            col.gameObject.tag == "splitMeteorTag") //when missile hit the meteor
         {
             Debug.Log("Meteor Destroyed");
             Destroy(gameObject);
-            Destroy(col.gameObject);
+
+            //script choose
+            if (col.gameObject.tag == "meteorTag")
+            {
+                col.gameObject.GetComponent<Meteor>().destroyOrSplit(col.gameObject,
+                                                        col.gameObject.transform.localScale,
+                                                        col.gameObject.transform.position,
+                                                        col.gameObject.transform.rotation,
+                                                        col.gameObject.GetComponent<SpriteRenderer>().color);
+            }
+            else if (col.gameObject.tag == "splitMeteorTag")
+            {
+                col.gameObject.GetComponent<SplitMeteor>().destroyOrSplit(col.gameObject,
+                                                      col.gameObject.transform.localScale,
+                                                      col.gameObject.transform.position,
+                                                      col.gameObject.transform.rotation,
+                                                      col.gameObject.GetComponent<SpriteRenderer>().color);
+            }
         }
     }
 }

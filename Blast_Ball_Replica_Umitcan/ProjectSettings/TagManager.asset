@@ -11,6 +11,7 @@ TagManager:
   - meteorTag
   - leftWallTag
   - rightWallTag
+  - splitMeteorTag
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1819908707812841574
+--- !u!1 &1961137283778995267
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,63 +8,54 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1819908707812841573}
-  - component: {fileID: 1819908707812841571}
-  - component: {fileID: 1819908707812841572}
-  - component: {fileID: 4973111204326696640}
-  - component: {fileID: 1819908707812841570}
+  - component: {fileID: 1961137283778995271}
+  - component: {fileID: 6736756852438656250}
+  - component: {fileID: 1961137283778995268}
+  - component: {fileID: 1961137283778995269}
+  - component: {fileID: 1961137283778995266}
   m_Layer: 0
-  m_Name: Meteor
-  m_TagString: meteorTag
+  m_Name: SplitMeteor
+  m_TagString: splitMeteorTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1819908707812841573
+--- !u!4 &1961137283778995271
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819908707812841574}
+  m_GameObject: {fileID: 1961137283778995267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.80984867, y: 2.273563, z: 0.15744497}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1819908707812841571
+--- !u!114 &6736756852438656250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819908707812841574}
+  m_GameObject: {fileID: 1961137283778995267}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca9781134759934db0972c6a3ff8065, type: 3}
+  m_Script: {fileID: 11500000, guid: ed6d6715b94eb3b49a8832802dc29bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bounceForce: 6
   minScale: 1.5
-  maxScale: 8
-  colors:
-  - {r: 0.8301887, g: 0.27803493, b: 0.27803493, a: 1}
-  - {r: 0.8679245, g: 0.15966538, b: 0.5694479, a: 1}
-  - {r: 0.09852261, g: 0.49150014, b: 0.7735849, a: 1}
-  - {r: 0.297278, g: 0.8962264, b: 0.2240566, a: 1}
-  - {r: 0.8490566, g: 0.5052016, b: 0.20425417, a: 1}
-  splitMeteor: {fileID: 1961137283778995267, guid: 4b887b588ce3a374e887c0d10960697b,
-    type: 3}
-  startControl: 0
---- !u!212 &1819908707812841572
+  splitMeteor: {fileID: 1961137283778995267}
+--- !u!212 &1961137283778995268
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819908707812841574}
+  m_GameObject: {fileID: 1961137283778995267}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -106,13 +97,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4973111204326696640
+--- !u!58 &1961137283778995269
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819908707812841574}
+  m_GameObject: {fileID: 1961137283778995267}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: ca55e3927fb0de645b892e7fcf2e7d85, type: 2}
@@ -122,14 +113,14 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.24
---- !u!50 &1819908707812841570
+--- !u!50 &1961137283778995266
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819908707812841574}
+  m_GameObject: {fileID: 1961137283778995267}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
