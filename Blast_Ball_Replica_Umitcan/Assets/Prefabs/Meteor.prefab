@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca9781134759934db0972c6a3ff8065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwSpeed: 6
-  minScale: 1.51
-  maxScale: 3.51
+  bounceForce: 6
+  minScale: 1.5
+  maxScale: 5
   colors:
   - {r: 0.8301887, g: 0.27803493, b: 0.27803493, a: 1}
   - {r: 0.8679245, g: 0.15966538, b: 0.5694479, a: 1}

@@ -464,6 +464,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1819908707812841571, guid: 3b624d7e1e635dc49b1cd791153a6b9e,
+        type: 3}
+      propertyPath: bounceForce
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4973111204326696640, guid: 3b624d7e1e635dc49b1cd791153a6b9e,
         type: 3}
       propertyPath: m_IsTrigger
@@ -982,6 +987,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1819908707812841571, guid: 3b624d7e1e635dc49b1cd791153a6b9e,
+        type: 3}
+      propertyPath: bounceForce
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4973111204326696640, guid: 3b624d7e1e635dc49b1cd791153a6b9e,
         type: 3}
       propertyPath: m_IsTrigger
@@ -1089,6 +1099,11 @@ PrefabInstance:
     - target: {fileID: 1819908707812841571, guid: 3b624d7e1e635dc49b1cd791153a6b9e,
         type: 3}
       propertyPath: throwSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819908707812841571, guid: 3b624d7e1e635dc49b1cd791153a6b9e,
+        type: 3}
+      propertyPath: bounceForce
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1819908707812841570, guid: 3b624d7e1e635dc49b1cd791153a6b9e,
