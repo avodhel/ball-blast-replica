@@ -10,6 +10,7 @@ public class LevelControl : MonoBehaviour
     public float lvlBarFillAmount = 0.1f;
     [Range(1, 10)]
     public int incMaxDurability = 1;
+    public Text lvlUpText;
     [Header("Level Bar")]
     public Image lvlBarFilled;
     public Text currentLvlText;
@@ -80,7 +81,6 @@ public class LevelControl : MonoBehaviour
         if (noMeteorControl) //if there is no meteor
         {
             lvlUp();
-            Debug.Log("level up!!!");
             spawnControl.GetComponent<SpawnControl>().insMetControl = true; //start instance meteor again
             Debug.Log("Meteor spawn started again");
             noMeteorControl = false; //there are meteors again
@@ -99,6 +99,8 @@ public class LevelControl : MonoBehaviour
 
     void lvlUp() //level up
     {
+        // show level up text
+        StartCoroutine(showTextForSeconds(lvlUpText, 2)); 
         //increase level bar values
         currentlvl += 1;
         nextLvl += 1;
@@ -117,5 +119,12 @@ public class LevelControl : MonoBehaviour
         //{
         //    vehicleShootRate -= 0.01f;
         //}
+    }
+
+    IEnumerator showTextForSeconds(Text text, float waitTime)
+    {
+        text.enabled = true;
+        yield return new WaitForSeconds(waitTime);
+        text.enabled = false;
     }
 }
