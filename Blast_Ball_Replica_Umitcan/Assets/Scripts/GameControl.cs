@@ -21,6 +21,7 @@ public class GameControl : MonoBehaviour
     private void Start()
     {
         resetHighScore();
+        //get score values
         scoreText.text = "Score: " + score;
         highScoreText.text = "HighScore: " + PlayerPrefs.GetInt("HighScore", 0);
     }
