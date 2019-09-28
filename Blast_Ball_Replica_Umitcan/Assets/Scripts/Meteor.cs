@@ -132,6 +132,10 @@ public class Meteor : MonoBehaviour
             bounceLeft = true;
             bounceRight = false;
         }
+        if (col.gameObject.tag == "downLimitTag") //when meteor falls down
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void destroyOrSplit(GameObject parentMeteor, Vector3 scale, Vector3 pos, Quaternion rot, Color color, int damage)

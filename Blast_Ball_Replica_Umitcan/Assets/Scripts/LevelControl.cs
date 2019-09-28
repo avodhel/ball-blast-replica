@@ -91,7 +91,6 @@ public class LevelControl : MonoBehaviour
             if (lvlBarFilled.fillAmount >= 1)
             {
                 spawnControl.GetComponent<SpawnControl>().insMetControl = false; //stop instance meteor
-                Debug.Log("Meteor spawn stopped");
                 lvlBarFull();
             }
         }
@@ -104,7 +103,6 @@ public class LevelControl : MonoBehaviour
         {
             lvlUp();
             spawnControl.GetComponent<SpawnControl>().insMetControl = true; //start instance meteor again
-            Debug.Log("Meteor spawn started again");
             noMeteorControl = false; //there are meteors again
         }
     }
@@ -115,7 +113,6 @@ public class LevelControl : MonoBehaviour
         {
             noMeteorControl = true; // there is no meteor
             lvlBarFull();
-            Debug.Log("There is  no meteor");
         }
     }
 
@@ -148,13 +145,6 @@ public class LevelControl : MonoBehaviour
 
         // increase meteor's maximum durability 
         spawnedMeteor.GetComponent<SpawnedMeteor>().maxDurability += incMaxDurability;
-
-        //reduce vehicle's shoot rate thus after every level up, it can be shoot faster
-        //float vehicleShootRate = vehicle.GetComponent<Vehicle>().shootRate;
-        //if (vehicleShootRate > 0.1f)
-        //{
-        //    vehicleShootRate -= 0.01f;
-        //}
 
         //increase missile damage 1 in 5 levels
         if (currentlvl % 5 == 0)
