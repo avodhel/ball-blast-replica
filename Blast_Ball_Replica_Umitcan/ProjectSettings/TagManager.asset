@@ -13,6 +13,7 @@ TagManager:
   - rightWallTag
   - splitMeteorTag
   - spawnControlTag
+  - gameControlTag
   layers:
   - Default
   - TransparentFX

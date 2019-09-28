@@ -19,7 +19,9 @@ public class Vehicle : MonoBehaviour
 
     private float nextShoot = 0.0f;
     float horizontal = 0f;
+    bool vehicleControl = true; //vehicle move and shoot control
 
+    GameObject gameControl;
     Vector3 vec;
     Rigidbody2D physic;
 
@@ -30,13 +32,17 @@ public class Vehicle : MonoBehaviour
 
     void FixedUpdate()
     {
-        vehicleMove();
-        shoot();
+        if (vehicleControl)
+        {
+            vehicleMove();
+            shoot();
+        }
     }
 
     void getComponents()
     {
         physic = GetComponent<Rigidbody2D>();
+        gameControl = GameObject.FindGameObjectWithTag("gameControlTag");
     }
 
     void vehicleMove()
@@ -64,10 +70,11 @@ public class Vehicle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "meteorTag" || 
+        if (col.gameObject.tag == "meteorTag" || //when meteor hits vehicle
             col.gameObject.tag == "splitMeteorTag")
         {
-            //Debug.Log("Game Over");
+            gameControl.GetComponent<GameControl>().gameOver(); //game over
+            vehicleControl = false; //vehicle can't move or shoot
         }
     }
 }
