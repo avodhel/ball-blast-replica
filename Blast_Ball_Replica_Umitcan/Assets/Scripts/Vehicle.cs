@@ -12,7 +12,7 @@ public class Vehicle : MonoBehaviour
     public float minX = -3.3f;
     [Header("Shoot")]
     [Range(0f, 5f)]
-    public float shootRate = 0.5f;
+    public float shootRate = 0.25f;
     public Transform aim;
     public GameObject missile;
     public GameObject missileContainer;
