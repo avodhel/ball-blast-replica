@@ -44,6 +44,7 @@ public class Missile : MonoBehaviour
             col.gameObject.tag == "splitMeteorTag") //when missile hit the meteor
         {
             Destroy(gameObject); //after hit destroy missile
+            FindObjectOfType<SoundControl>().playSound("Meteor Hit"); //play sound
 
             //script choose
             if (col.gameObject.tag == "meteorTag")

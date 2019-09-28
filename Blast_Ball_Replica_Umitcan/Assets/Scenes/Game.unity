@@ -355,7 +355,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 1}
+  m_Size: {x: 11, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &236713689
 GameObject:
@@ -477,7 +477,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 1}
+  m_Size: {x: 7.6, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &238562661
 Transform:
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b5545a65c9a8a479b4e7abd2d32a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 3.5
+  spawnTime: 3
   meteor: {fileID: 1819908707812841574, guid: 3b624d7e1e635dc49b1cd791153a6b9e, type: 3}
   splitMeteor: {fileID: 1961137283778995267, guid: 4b887b588ce3a374e887c0d10960697b,
     type: 3}
@@ -1502,7 +1502,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 1}
+  m_Size: {x: 11, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1133812566
 GameObject:
@@ -1985,9 +1985,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - soundName: Meteor Ground
+    clip: {fileID: 8300000, guid: e03676e0d3f3a8a479ce870c4610581f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: Shoot
+    clip: {fileID: 8300000, guid: ea5a5b8040f5bcc4ab3f72c2ad409cb6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - soundName: Meteor Hit
     clip: {fileID: 8300000, guid: a9f8539387437204b890fcef73e95172, type: 3}
-    volume: 0.75
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}

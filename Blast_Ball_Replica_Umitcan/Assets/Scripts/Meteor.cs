@@ -117,6 +117,8 @@ public class Meteor : MonoBehaviour
             {
                 this.physic.velocity = new Vector2(-1f, bounceForce); //bounce to left
             }
+            //play sound
+            FindObjectOfType<SoundControl>().playSound("Meteor Ground");
         }
         if (col.gameObject.tag == "leftWallTag") //when meteor hit the left wall
         {

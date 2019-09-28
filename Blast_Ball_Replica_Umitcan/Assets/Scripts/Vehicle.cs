@@ -71,6 +71,7 @@ public class Vehicle : MonoBehaviour
         {
             nextShoot = Time.time + shootRate;
             (Instantiate(missile, aim.position, aim.rotation)as GameObject).transform.parent = missileContainer.transform;
+            FindObjectOfType<SoundControl>().playSound("Shoot");
         }
     }
 

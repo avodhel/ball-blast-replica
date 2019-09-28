@@ -56,7 +56,7 @@ public class GameControl : MonoBehaviour
 
     public void gameOver()
     {
-        gameOverPanel.SetActive(true); //show game over panel
-        assignHighScore(score);
+            gameOverPanel.SetActive(true); //show game over panel
+            assignHighScore(score);
     }
 }
