@@ -9,7 +9,9 @@ public class LevelControl : MonoBehaviour
     [Range(0.01f, 1f)]
     public float lvlBarFillAmount = 0.1f;
     [Range(1, 10)]
-    public int incMaxDurability = 1;
+    public int incMaxDurability = 2;
+    [Range(1, 10)]
+    public int incMinDurability = 1;
     public Text lvlUpText;
     [Header("Level Bar")]
     public Image lvlBarFilled;
@@ -25,6 +27,8 @@ public class LevelControl : MonoBehaviour
     public GameObject meteorContainer;
     [Header("Vehicle")]
     public GameObject vehicle;
+    [Header("Missile")]
+    public GameObject missile;
 
     bool noMeteorControl = false; //is there any meteor or not
     bool lvlBarFullControl = false; //turned true when level bar fulled
@@ -46,9 +50,13 @@ public class LevelControl : MonoBehaviour
         }
     }
 
-    void resetLvlValues() //reset values after every restart
+    void resetLvlValues() //reset values after every restart game
     {
         spawnedMeteor.GetComponent<SpawnedMeteor>().maxDurability = 3;
+        spawnedMeteor.GetComponent<SpawnedMeteor>().minDurability = 1;
+        splitMeteor.GetComponent<SplitMeteor>().maxDurability = 2;
+        splitMeteor.GetComponent<SplitMeteor>().minDurability = 1;
+        missile.GetComponent<Missile>().missileDamage = 1;
     }
 
     void updateLvlValues() //update values after every level up and restart game
@@ -101,24 +109,41 @@ public class LevelControl : MonoBehaviour
     {
         // show level up text
         StartCoroutine(showTextForSeconds(lvlUpText, 2)); 
+
         //increase level bar values
         currentlvl += 1;
         nextLvl += 1;
+
         //update level values
         updateLvlValues();
+
         //reduce fill amount after every level up thus every next level will be more meteors
         if (lvlBarFillAmount > 0.01f)
         {
             lvlBarFillAmount -= 0.01f; 
         }
+
+        //increase meteor's minimum durability 1 in 3 levels
+        if (currentlvl % 3 == 0)
+        {
+            spawnedMeteor.GetComponent<SpawnedMeteor>().minDurability += incMinDurability;
+        }
+
         // increase meteor's maximum durability 
         spawnedMeteor.GetComponent<SpawnedMeteor>().maxDurability += incMaxDurability;
+
         //reduce vehicle's shoot rate thus after every level up, it can be shoot faster
         //float vehicleShootRate = vehicle.GetComponent<Vehicle>().shootRate;
         //if (vehicleShootRate > 0.1f)
         //{
         //    vehicleShootRate -= 0.01f;
         //}
+
+        //increase missile damage 1 in 5 levels
+        if (currentlvl % 5 == 0)
+        {
+            missile.GetComponent<Missile>().missileDamage += 1;
+        }
     }
 
     IEnumerator showTextForSeconds(Text text, float waitTime)

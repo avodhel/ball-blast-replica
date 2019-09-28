@@ -1002,8 +1002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178fe64186b1c904284911c8c509763c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvlBarFillAmount: 0.2
-  incMaxDurability: 1
+  lvlBarFillAmount: 0.15
+  incMaxDurability: 2
   lvlUpText: {fileID: 236713691}
   lvlBarFilled: {fileID: 472149864}
   currentLvlText: {fileID: 1713944884}
@@ -1016,6 +1016,7 @@ MonoBehaviour:
     type: 3}
   meteorContainer: {fileID: 353991788}
   vehicle: {fileID: 928898652}
+  missile: {fileID: 6451838432758693378, guid: f47737d7e714eb24daa9c46b0144a367, type: 3}
 --- !u!4 &910087022
 Transform:
   m_ObjectHideFlags: 0
@@ -1175,7 +1176,7 @@ MonoBehaviour:
   vehicleSpeed: 5
   maxX: 3.2
   minX: -3.3
-  shootRate: 0.2
+  shootRate: 0.1
   aim: {fileID: 1133812567}
   missile: {fileID: 6451838432758693378, guid: f47737d7e714eb24daa9c46b0144a367, type: 3}
   missileContainer: {fileID: 1665348550}

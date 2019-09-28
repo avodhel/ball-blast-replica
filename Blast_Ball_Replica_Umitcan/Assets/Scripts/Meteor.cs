@@ -37,6 +37,8 @@ public class Meteor : MonoBehaviour
     [HideInInspector]
     public int parentDur = 1;
 
+    int getDamage = 1;
+
     public void Start()
     {
         getComponents();
@@ -61,9 +63,9 @@ public class Meteor : MonoBehaviour
         {
             randDur = Random.Range(minDurability, maxDurability);
         }
-        if (condition == "reduce")
+        if (condition == "reduce") //reduce durability
         {
-            randDur -= 1;
+            randDur -= getDamage;
         }
         durabilityText.text = randDur.ToString();
     }
@@ -124,10 +126,11 @@ public class Meteor : MonoBehaviour
         }
     }
 
-    public void destroyOrSplit(GameObject parentMeteor, Vector3 scale, Vector3 pos, Quaternion rot, Color color)
+    public void destroyOrSplit(GameObject parentMeteor, Vector3 scale, Vector3 pos, Quaternion rot, Color color, int damage)
     {
-        metDurability("reduce"); //reduce durability
-        if (randDur == 0) //when durability is 0
+        getDamage = damage;
+        metDurability("reduce"); //reduce durability according to damage
+        if (randDur <= 0) //when durability is 0
         {
             Destroy(parentMeteor); //destroy parent meteor
 

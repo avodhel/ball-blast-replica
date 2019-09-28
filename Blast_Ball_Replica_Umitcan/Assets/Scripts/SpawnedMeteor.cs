@@ -25,6 +25,7 @@ public class SpawnedMeteor : Meteor
         if (condition == "determine")
         {
             parentDur = randDur; //save parent's durability
+            Debug.Log(parentDur);
         }
     }
 

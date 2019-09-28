@@ -7,6 +7,9 @@ public class Missile : MonoBehaviour
     [Header("Speed")]
     [Range(0f, 50f)]
     public float missileSpeed = 10f;
+    [Header("Damage")]
+    [Range(0, 50)]
+    public int missileDamage = 1;
 
     Rigidbody2D physic;
 
@@ -48,7 +51,8 @@ public class Missile : MonoBehaviour
                                                         col.gameObject.transform.localScale,
                                                         col.gameObject.transform.position,
                                                         col.gameObject.transform.rotation,
-                                                        col.gameObject.GetComponent<SpriteRenderer>().color);
+                                                        col.gameObject.GetComponent<SpriteRenderer>().color,
+                                                        missileDamage);
             }
             else if (col.gameObject.tag == "splitMeteorTag")
             {
@@ -56,7 +60,8 @@ public class Missile : MonoBehaviour
                                                       col.gameObject.transform.localScale,
                                                       col.gameObject.transform.position,
                                                       col.gameObject.transform.rotation,
-                                                      col.gameObject.GetComponent<SpriteRenderer>().color);
+                                                      col.gameObject.GetComponent<SpriteRenderer>().color,
+                                                      missileDamage);
             }
         }
     }
