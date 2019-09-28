@@ -7,9 +7,11 @@ public class Vehicle : MonoBehaviour
     [Header("Speed")]
     [Range(0f, 10f)]
     public float vehicleSpeed = 3.3f;
+
     [Header("Stay on Screen")]
     public float maxX = 3.2f;
     public float minX = -3.3f;
+
     [Header("Shoot")]
     [Range(0f, 5f)]
     public float shootRate = 0.25f;

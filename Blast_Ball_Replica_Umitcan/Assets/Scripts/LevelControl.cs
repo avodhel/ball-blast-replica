@@ -13,20 +13,26 @@ public class LevelControl : MonoBehaviour
     [Range(1, 10)]
     public int incMinDurability = 1;
     public Text lvlUpText;
+
     [Header("Level Bar")]
     public Image lvlBarFilled;
     public Text currentLvlText;
     public Text nextLvlText;
+
     [Header("Level")]
     public Text lvlText;
+
     [Header("Spawn")]
     public GameObject spawnControl;
+
     [Header("Meteors")]
     public GameObject spawnedMeteor;
     public GameObject splitMeteor;
     public GameObject meteorContainer;
+
     [Header("Vehicle")]
     public GameObject vehicle;
+
     [Header("Missile")]
     public GameObject missile;
 

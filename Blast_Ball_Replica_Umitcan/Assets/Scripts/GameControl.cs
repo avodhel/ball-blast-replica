@@ -8,6 +8,7 @@ public class GameControl : MonoBehaviour
 {
     [Header("Score")]
     public Text scoreText;
+
     [Header("Game Over")]
     public GameObject gameOverPanel;
 

@@ -8,13 +8,16 @@ public class Meteor : MonoBehaviour
     [Header("Bounce")]
     [Range(0f, 25f)]
     public float bounceForce = 6f;
+
     [Header("Scale")]
     [Range(0.1f, 5f)]
     public float minScale = 1.5f;
     [Range(0.1f, 15f)]
     public float maxScale = 8f;
+
     [Header("Split")]
     public GameObject splitMeteor;
+
     [Header("Durability")]
     [Range(1, 100)]
     public int minDurability = 1;

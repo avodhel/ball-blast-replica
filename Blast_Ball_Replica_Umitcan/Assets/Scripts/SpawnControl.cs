@@ -9,13 +9,16 @@ public class SpawnControl : MonoBehaviour
     public float spawnTime = 10f;
     public GameObject meteor;
     public GameObject splitMeteor;
+
     [Header("Spawn Points")]
     public Transform leftSpawnPoint;
     public Transform leftTargetPoint;
     public Transform rightSpawnPoint;
     public Transform rightTargetPoint;
+
     [Header("Meteor Container")]
     public GameObject meteorContainer;
+
     [Header("Level Control")]
     public GameObject lvlControl;
 

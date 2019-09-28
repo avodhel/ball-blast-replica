@@ -7,6 +7,7 @@ public class Missile : MonoBehaviour
     [Header("Speed")]
     [Range(0f, 50f)]
     public float missileSpeed = 10f;
+
     [Header("Damage")]
     [Range(0, 50)]
     public int missileDamage = 1;
