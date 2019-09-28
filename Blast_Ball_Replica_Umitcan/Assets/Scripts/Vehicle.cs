@@ -67,7 +67,7 @@ public class Vehicle : MonoBehaviour
         if (col.gameObject.tag == "meteorTag" || 
             col.gameObject.tag == "splitMeteorTag")
         {
-            Debug.Log("Game Over");
+            //Debug.Log("Game Over");
         }
     }
 }

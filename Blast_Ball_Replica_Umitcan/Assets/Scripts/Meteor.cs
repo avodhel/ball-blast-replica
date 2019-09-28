@@ -19,7 +19,7 @@ public class Meteor : MonoBehaviour
     [Range(1, 100)]
     public int minDurability = 1;
     [Range(1, 100)]
-    public int maxDurability = 5;
+    public int maxDurability = 3;
     public Text durabilityText;
 
     [HideInInspector]

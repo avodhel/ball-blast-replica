@@ -21,20 +21,39 @@ public class LevelControl : MonoBehaviour
     [Header("Meteors")]
     public GameObject spawnedMeteor;
     public GameObject splitMeteor;
+    public GameObject meteorContainer;
     [Header("Vehicle")]
     public GameObject vehicle;
+
+    bool noMeteorControl = false; //is there any meteor or not
+    bool lvlBarFullControl = false; //turned true when level bar fulled
 
     int currentlvl = 1;
     int nextLvl = 2;
 
     void Start()
     {
+        resetLvlValues();
         updateLvlValues();
     }
 
-    void updateLvlValues()
+    void Update()
+    {
+        if (lvlBarFullControl) //when level bar fulled
+        {
+            checkOutMet(); // check out is there any meteor from previous level
+        }
+    }
+
+    void resetLvlValues() //reset values after every restart
+    {
+        spawnedMeteor.GetComponent<SpawnedMeteor>().maxDurability = 3;
+    }
+
+    void updateLvlValues() //update values after every level up and restart game
     {
         lvlBarFilled.fillAmount = 0; //reset level bar
+        lvlBarFullControl = false; //level bar isn't full anymore
         currentLvlText.text = currentlvl.ToString();
         nextLvlText.text = nextLvl.ToString();
         lvlText.text = "Level: " + currentlvl;
@@ -48,9 +67,33 @@ public class LevelControl : MonoBehaviour
 
             if (lvlBarFilled.fillAmount >= 1)
             {
-                lvlUp();
-                Debug.Log("level up!!!");
+                spawnControl.GetComponent<SpawnControl>().insMetControl = false; //stop instance meteor
+                Debug.Log("Meteor spawn stopped");
+                lvlBarFull();
             }
+        }
+    }
+
+    void lvlBarFull()
+    {
+        lvlBarFullControl = true;
+        if (noMeteorControl) //if there is no meteor
+        {
+            lvlUp();
+            Debug.Log("level up!!!");
+            spawnControl.GetComponent<SpawnControl>().insMetControl = true; //start instance meteor again
+            Debug.Log("Meteor spawn started again");
+            noMeteorControl = false; //there are meteors again
+        }
+    }
+
+    void checkOutMet() //check out is there any meteor from last level
+    {
+        if (meteorContainer.transform.childCount == 0)
+        {
+            noMeteorControl = true; // there is no meteor
+            lvlBarFull();
+            Debug.Log("There is  no meteor");
         }
     }
 
@@ -69,10 +112,10 @@ public class LevelControl : MonoBehaviour
         // increase meteor's maximum durability 
         spawnedMeteor.GetComponent<SpawnedMeteor>().maxDurability += incMaxDurability;
         //reduce vehicle's shoot rate thus after every level up, it can be shoot faster
-        float vehicleShootRate = vehicle.GetComponent<Vehicle>().shootRate;
-        if (vehicleShootRate > 0.1f)
-        {
-            vehicleShootRate -= 0.01f;
-        }
+        //float vehicleShootRate = vehicle.GetComponent<Vehicle>().shootRate;
+        //if (vehicleShootRate > 0.1f)
+        //{
+        //    vehicleShootRate -= 0.01f;
+        //}
     }
 }

@@ -19,6 +19,9 @@ public class SpawnControl : MonoBehaviour
     [Header("Level Control")]
     public GameObject lvlControl;
 
+    [HideInInspector]
+    public bool insMetControl = true; //instance meteor or not 
+
     GameObject meteorClone;
     Transform selectedTargetSide;
     Transform selectedSpawnSide;
@@ -53,10 +56,13 @@ public class SpawnControl : MonoBehaviour
             //spawn side
             chooseSpawnSide();
             //instance meteor
-            meteorClone = Instantiate(meteor, selectedSpawnSide.position, selectedSpawnSide.rotation);
-            (meteorClone as GameObject).transform.parent = meteorContainer.transform; //add meteors to meteor container
-            lvlControl.GetComponent<LevelControl>().fillLvlBar(); //after every meteor instance fill level bar
-            moveToTargetControl = true;
+            if (insMetControl)
+            {
+                meteorClone = Instantiate(meteor, selectedSpawnSide.position, selectedSpawnSide.rotation);
+                (meteorClone as GameObject).transform.parent = meteorContainer.transform; //add meteors to meteor container
+                lvlControl.GetComponent<LevelControl>().fillLvlBar(); //after every meteor instance fill level bar
+                moveToTargetControl = true;
+            }
         }
 
         if (moveToTargetControl)

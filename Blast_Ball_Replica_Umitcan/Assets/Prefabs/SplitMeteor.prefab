@@ -52,7 +52,7 @@ MonoBehaviour:
   maxScale: 8
   splitMeteor: {fileID: 1961137283778995267}
   minDurability: 1
-  maxDurability: 5
+  maxDurability: 1
   durabilityText: {fileID: 1931236721045395430}
   physic: {fileID: 0}
   sRenderer: {fileID: 0}
