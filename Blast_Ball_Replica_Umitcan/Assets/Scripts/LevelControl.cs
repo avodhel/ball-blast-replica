@@ -30,6 +30,8 @@ public class LevelControl : MonoBehaviour
     [Header("Missile")]
     public GameObject missile;
 
+    GameObject gameControl;
+
     bool noMeteorControl = false; //is there any meteor or not
     bool lvlBarFullControl = false; //turned true when level bar fulled
 
@@ -40,6 +42,7 @@ public class LevelControl : MonoBehaviour
     {
         resetLvlValues();
         updateLvlValues();
+        getComponents();
     }
 
     void Update()
@@ -48,6 +51,11 @@ public class LevelControl : MonoBehaviour
         {
             checkOutMet(); // check out is there any meteor from previous level
         }
+    }
+
+    void getComponents()
+    {
+        gameControl = GameObject.FindGameObjectWithTag("gameControlTag");
     }
 
     void resetLvlValues() //reset values after every restart game
@@ -107,6 +115,9 @@ public class LevelControl : MonoBehaviour
 
     void lvlUp() //level up
     {
+        //increase score
+        gameControl.GetComponent<GameControl>().incScore(currentlvl * 100);
+
         // show level up text
         StartCoroutine(showTextForSeconds(lvlUpText, 2)); 
 

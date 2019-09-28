@@ -32,11 +32,8 @@ public class Vehicle : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (vehicleControl)
-        {
-            vehicleMove();
-            shoot();
-        }
+        vehicleMove();
+        shoot();
     }
 
     void getComponents()
@@ -47,12 +44,19 @@ public class Vehicle : MonoBehaviour
 
     void vehicleMove()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
+        if (vehicleControl)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
 
-        vec = new Vector3(horizontal * vehicleSpeed, physic.velocity.y, 0);
-        physic.velocity = vec;
+            vec = new Vector3(horizontal * vehicleSpeed, physic.velocity.y, 0);
+            physic.velocity = vec;
+        }
 
-        //stay on screen field
+        stayOnScreen();
+    }
+
+    void stayOnScreen() //stay on screen field
+    {
         physic.position = new Vector3(
         Mathf.Clamp(physic.position.x, minX, maxX),
         transform.position.y
@@ -61,7 +65,7 @@ public class Vehicle : MonoBehaviour
 
     void shoot()
     {
-        if (Input.GetButton("Jump") && Time.time > nextShoot)
+        if (Input.GetButton("Jump") && Time.time > nextShoot && vehicleControl)
         {
             nextShoot = Time.time + shootRate;
             (Instantiate(missile, aim.position, aim.rotation)as GameObject).transform.parent = missileContainer.transform;

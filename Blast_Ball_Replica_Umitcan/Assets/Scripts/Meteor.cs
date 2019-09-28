@@ -29,6 +29,8 @@ public class Meteor : MonoBehaviour
     [HideInInspector]
     public GameObject spawnControl;
     [HideInInspector]
+    public GameObject gameControl;
+    [HideInInspector]
     public bool bounceRight = false;
     [HideInInspector]
     public bool bounceLeft = false;
@@ -55,6 +57,7 @@ public class Meteor : MonoBehaviour
         physic = GetComponent<Rigidbody2D>();
         sRenderer = GetComponent<SpriteRenderer>();
         spawnControl = GameObject.FindGameObjectWithTag("spawnControlTag");
+        gameControl = GameObject.FindGameObjectWithTag("gameControlTag");
     }
 
     protected virtual void metDurability(string condition) //meteor durability
@@ -133,6 +136,7 @@ public class Meteor : MonoBehaviour
         if (randDur <= 0) //when durability is 0
         {
             Destroy(parentMeteor); //destroy parent meteor
+            gameControl.GetComponent<GameControl>().incScore(10); //increase score
 
             //spawn split meteors
             if (scale.x * 0.5f > minScale)
