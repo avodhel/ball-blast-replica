@@ -1786,6 +1786,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1138304045}
+  resetHighScoreControl: 0
+  highScoreText: {fileID: 2080832250}
   gameOverPanel: {fileID: 1462727926}
 --- !u!1 &1462727926
 GameObject:
