@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Vehicle : MonoBehaviour
 {
@@ -20,58 +18,56 @@ public class Vehicle : MonoBehaviour
     public GameObject missileContainer;
 
     private float nextShoot = 0.0f;
-    float horizontal = 0f;
-    bool vehicleControl = true; //vehicle move and shoot control
+    private float horizontal = 0f;
+    private bool vehicleControl = true; //vehicle move and shoot control
 
-    GameObject gameControl;
-    Vector3 vec;
-    Rigidbody2D physic;
+    private GameObject gameControl;
+    private Vector3 vec3;
+    private Rigidbody2D rb2D;
 
-    void Start()
+    private void Start()
     {
-        getComponents();
+        GetComponents();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        vehicleMove();
-        shoot();
+        VehicleMove();
+        Shoot();
     }
 
-    void getComponents()
+    private void GetComponents()
     {
-        physic = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
         gameControl = GameObject.FindGameObjectWithTag("gameControlTag");
     }
 
-    void vehicleMove()
+    private void VehicleMove()
     {
         if (vehicleControl)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
 
-            vec = new Vector3(horizontal * vehicleSpeed, physic.velocity.y, 0);
-            physic.velocity = vec;
+            vec3 = new Vector3(horizontal * vehicleSpeed, rb2D.velocity.y, 0);
+            rb2D.velocity = vec3;
         }
 
-        stayOnScreen();
+        StayOnScreen();
     }
 
-    void stayOnScreen() //stay on screen field
+    private void StayOnScreen()
     {
-        physic.position = new Vector3(
-        Mathf.Clamp(physic.position.x, minX, maxX),
-        transform.position.y
-        );
+        rb2D.position = new Vector3(Mathf.Clamp(rb2D.position.x, minX, maxX),
+                                    transform.position.y);
     }
 
-    void shoot()
+    private void Shoot()
     {
         if (Input.GetButton("Jump") && Time.time > nextShoot && vehicleControl)
         {
             nextShoot = Time.time + shootRate;
             (Instantiate(missile, aim.position, aim.rotation)as GameObject).transform.parent = missileContainer.transform;
-            FindObjectOfType<SoundControl>().playSound("Shoot");
+            FindObjectOfType<SoundControl>().PlaySound("Shoot");
         }
     }
 
@@ -80,7 +76,7 @@ public class Vehicle : MonoBehaviour
         if (col.gameObject.tag == "meteorTag" || //when meteor hits vehicle
             col.gameObject.tag == "splitMeteorTag")
         {
-            gameControl.GetComponent<GameControl>().gameOver(); //game over
+            gameControl.GetComponent<GameControl>().GameOver(); //game over
             vehicleControl = false; //vehicle can't move or shoot
         }
     }

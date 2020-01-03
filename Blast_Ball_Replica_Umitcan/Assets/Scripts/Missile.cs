@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
@@ -12,25 +10,25 @@ public class Missile : MonoBehaviour
     [Range(0, 50)]
     public int missileDamage = 1;
 
-    Rigidbody2D physic;
+    private Rigidbody2D rb2D;
 
-    void Start()
+    private void Start()
     {
-        getComponents();
-        force();
+        GetComponents();
+        Force();
     }
 
-    void getComponents()
+    private void GetComponents()
     {
-        physic = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
-    void force()
+    private void Force()
     {
-        physic.velocity = transform.up * missileSpeed; //apply force to missile
+        rb2D.velocity = transform.up * missileSpeed; //apply force to missile
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    private void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.tag == "upLimitTag") //when missile reach to upper limit destroy it
         {
@@ -44,7 +42,7 @@ public class Missile : MonoBehaviour
             col.gameObject.tag == "splitMeteorTag") //when missile hit the meteor
         {
             Destroy(gameObject); //after hit destroy missile
-            FindObjectOfType<SoundControl>().playSound("Meteor Hit"); //play sound
+            FindObjectOfType<SoundControl>().PlaySound("Meteor Hit"); //play sound
 
             //script choose
             if (col.gameObject.tag == "meteorTag")

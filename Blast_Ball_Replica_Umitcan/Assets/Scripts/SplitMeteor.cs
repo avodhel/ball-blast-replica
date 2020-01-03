@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class SplitMeteor : Meteor
 {
     private new void Start()
     {
-        getComponents();
-        bounceAccToScale();
-        metDurability("determine");
+        GetComponents();
+        BounceAccToScale();
+        MeteorDurability("determine");
     }
 
-    public void bounceSplitMeteor(GameObject splitMet, string whichSide)
+    public void BounceSplitMeteor(GameObject splitMet, string whichSide)
     {
         if (whichSide == "right")
         {

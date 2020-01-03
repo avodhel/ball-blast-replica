@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Meteor : MonoBehaviour
@@ -42,20 +40,20 @@ public class Meteor : MonoBehaviour
     [HideInInspector]
     public int parentDur = 1;
 
-    int getDamage = 1;
+    private int getDamage = 1;
 
     public void Start()
     {
-        getComponents();
-        metDurability("determine");
+        GetComponents();
+        MeteorDurability("determine");
     }
 
     public void Update()
     {
-        rotateMeteor();
+        RotateMeteor();
     }
 
-    public void getComponents()
+    protected void GetComponents()
     {
         physic = GetComponent<Rigidbody2D>();
         sRenderer = GetComponent<SpriteRenderer>();
@@ -63,7 +61,7 @@ public class Meteor : MonoBehaviour
         gameControl = GameObject.FindGameObjectWithTag("gameControlTag");
     }
 
-    protected virtual void metDurability(string condition) //meteor durability
+    protected virtual void MeteorDurability(string condition) //meteor durability
     {
         if (condition == "determine")
         {
@@ -76,12 +74,12 @@ public class Meteor : MonoBehaviour
         durabilityText.text = randDur.ToString();
     }
 
-    void rotateMeteor()
+    protected void RotateMeteor()
     {
         transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)) * Time.deltaTime);
     }
 
-    public void bounceAccToScale() //bounce according to scale
+    protected void BounceAccToScale() //bounce according to scale
     {
         if (this.gameObject.transform.localScale.x > minScale && gameObject.transform.localScale.x <= 2f)
         {
@@ -118,7 +116,7 @@ public class Meteor : MonoBehaviour
                 this.physic.velocity = new Vector2(-1f, bounceForce); //bounce to left
             }
             //play sound
-            FindObjectOfType<SoundControl>().playSound("Meteor Ground");
+            FindObjectOfType<SoundControl>().PlaySound("Meteor Ground");
         }
         if (col.gameObject.tag == "leftWallTag") //when meteor hit the left wall
         {
@@ -141,16 +139,16 @@ public class Meteor : MonoBehaviour
     public void destroyOrSplit(GameObject parentMeteor, Vector3 scale, Vector3 pos, Quaternion rot, Color color, int damage)
     {
         getDamage = damage;
-        metDurability("reduce"); //reduce durability according to damage
+        MeteorDurability("reduce"); //reduce durability according to damage
         if (randDur <= 0) //when durability is 0
         {
             Destroy(parentMeteor); //destroy parent meteor
-            gameControl.GetComponent<GameControl>().incScore(10); //increase score
+            gameControl.GetComponent<GameControl>().IncScore(10); //increase score
 
             //spawn split meteors
             if (scale.x * 0.5f > minScale)
             {
-                spawnControl.GetComponent<SpawnControl>().insSplitMeteor(scale, pos, rot, color, parentDur); //instance split meteors
+                spawnControl.GetComponent<SpawnControl>().InstanceSplitMeteor(scale, pos, rot, color, parentDur); //instance split meteors
             }
         }
     }

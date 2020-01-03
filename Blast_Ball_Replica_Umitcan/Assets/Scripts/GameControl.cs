@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -16,22 +14,23 @@ public class GameControl : MonoBehaviour
     [Header("Game Over")]
     public GameObject gameOverPanel;
 
-    int score = 0;
+    private int score = 0;
 
     private void Start()
     {
-        resetHighScore();
+        ResetHighScore();
+
         //get score values
         scoreText.text = "Score: " + score;
         highScoreText.text = "HighScore: " + PlayerPrefs.GetInt("HighScore", 0);
     }
 
-    public void restartGame()
+    public void RestartGame()
     {
         SceneManager.LoadScene(1);
     }
 
-    void resetHighScore()
+    private void ResetHighScore()
     {
         if (resetHighScoreControl)
         {
@@ -39,13 +38,13 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    public void incScore(int value) //increase score
+    public void IncScore(int value) //increase score
     {
         score += value;
         scoreText.text = "Score: " + score;
     }
 
-    public void assignHighScore(int score)
+    private void AssignHighScore(int score)
     {
         if (score > PlayerPrefs.GetInt("HighScore", 0))
         {
@@ -54,9 +53,9 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    public void gameOver()
+    public void GameOver()
     {
             gameOverPanel.SetActive(true); //show game over panel
-            assignHighScore(score);
+            AssignHighScore(score);
     }
 }

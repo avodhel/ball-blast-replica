@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,35 +35,35 @@ public class LevelControl : MonoBehaviour
     [Header("Missile")]
     public GameObject missile;
 
-    GameObject gameControl;
+    private GameObject gameControl;
 
-    bool noMeteorControl = false; //is there any meteor or not
-    bool lvlBarFullControl = false; //turned true when level bar fulled
+    private bool noMeteorControl = false; //is there any meteor or not
+    private bool lvlBarFullControl = false; //turned true when level bar fulled
 
-    int currentlvl = 1;
-    int nextLvl = 2;
+    private int currentlvl = 1;
+    private int nextLvl = 2;
 
-    void Start()
+    private void Start()
     {
-        resetLvlValues();
-        updateLvlValues();
-        getComponents();
+        ResetLvlValues();
+        UpdateLvlValues();
+        FindObjects();
     }
 
-    void Update()
+    private void Update()
     {
         if (lvlBarFullControl) //when level bar fulled
         {
-            checkOutMet(); // check out is there any meteor from previous level
+            CheckOutMeteorContainer(); // check out is there any meteor from previous level
         }
     }
 
-    void getComponents()
+    private void FindObjects()
     {
         gameControl = GameObject.FindGameObjectWithTag("gameControlTag");
     }
 
-    void resetLvlValues() //reset values after every restart game
+    private void ResetLvlValues() //reset values after every restart game
     {
         spawnedMeteor.GetComponent<SpawnedMeteor>().maxDurability = 3;
         spawnedMeteor.GetComponent<SpawnedMeteor>().minDurability = 1;
@@ -73,7 +72,7 @@ public class LevelControl : MonoBehaviour
         missile.GetComponent<Missile>().missileDamage = 1;
     }
 
-    void updateLvlValues() //update values after every level up and restart game
+    private void UpdateLvlValues() //update values after every level up and restart game
     {
         lvlBarFilled.fillAmount = 0; //reset level bar
         lvlBarFullControl = false; //level bar isn't full anymore
@@ -82,7 +81,7 @@ public class LevelControl : MonoBehaviour
         lvlText.text = "Level: " + currentlvl;
     }
 
-    public void fillLvlBar() //fill level bar after every meteor spawned
+    public void FillLvlBar() //fill level bar after every meteor spawned
     {
         if (lvlBarFilled.fillAmount < 1)
         {
@@ -91,45 +90,45 @@ public class LevelControl : MonoBehaviour
             if (lvlBarFilled.fillAmount >= 1)
             {
                 spawnControl.GetComponent<SpawnControl>().insMetControl = false; //stop instance meteor
-                lvlBarFull();
+                LvlBarFull();
             }
         }
     }
 
-    void lvlBarFull()
+    private void LvlBarFull()
     {
         lvlBarFullControl = true;
         if (noMeteorControl) //if there is no meteor
         {
-            lvlUp();
+            LvlUp();
             spawnControl.GetComponent<SpawnControl>().insMetControl = true; //start instance meteor again
             noMeteorControl = false; //there are meteors again
         }
     }
 
-    void checkOutMet() //check out is there any meteor from last level
+    private void CheckOutMeteorContainer() //check out is there any meteor from last level
     {
         if (meteorContainer.transform.childCount == 0)
         {
             noMeteorControl = true; // there is no meteor
-            lvlBarFull();
+            LvlBarFull();
         }
     }
 
-    void lvlUp() //level up
+    private void LvlUp() //level up
     {
         //increase score
-        gameControl.GetComponent<GameControl>().incScore(currentlvl * 100);
+        gameControl.GetComponent<GameControl>().IncScore(currentlvl * 100);
 
         // show level up text
-        StartCoroutine(showTextForSeconds(lvlUpText, 2)); 
+        StartCoroutine(ShowTextForSeconds(lvlUpText, 2)); 
 
         //increase level bar values
         currentlvl += 1;
         nextLvl += 1;
 
         //update level values
-        updateLvlValues();
+        UpdateLvlValues();
 
         //reduce fill amount after every level up thus every next level will be more meteors
         if (lvlBarFillAmount > 0.01f)
@@ -153,7 +152,7 @@ public class LevelControl : MonoBehaviour
         }
     }
 
-    IEnumerator showTextForSeconds(Text text, float waitTime)
+    private IEnumerator ShowTextForSeconds(Text text, float waitTime)
     {
         text.enabled = true;
         yield return new WaitForSeconds(waitTime);

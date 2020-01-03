@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpawnControl : MonoBehaviour
 {
@@ -30,19 +28,19 @@ public class SpawnControl : MonoBehaviour
     Transform selectedSpawnSide;
 
     private float nextSpawn = 0.0f;
-    bool moveToTargetControl = true; //meteor moves to target point until reach it
+    private bool moveToTargetControl = true; //meteor moves to target point until reach it
 
-    void Start()
+    private void Start()
     {
-        getComponents();
+        GetComponents();
     }
 
-    void Update()
+    private void Update()
     {
-        insMeteor();
+        InstanceMeteor();
     }
 
-    void getComponents()
+    private void GetComponents()
     {
         meteorClone = meteor.gameObject;
         //default side
@@ -50,7 +48,7 @@ public class SpawnControl : MonoBehaviour
         selectedSpawnSide = rightSpawnPoint;
     }
 
-    void insMeteor() //instance meteor
+    private void InstanceMeteor() 
     {
         if (Time.time > nextSpawn)
         {
@@ -63,18 +61,18 @@ public class SpawnControl : MonoBehaviour
             {
                 meteorClone = Instantiate(meteor, selectedSpawnSide.position, selectedSpawnSide.rotation);
                 (meteorClone as GameObject).transform.parent = meteorContainer.transform; //add meteors to meteor container
-                lvlControl.GetComponent<LevelControl>().fillLvlBar(); //after every meteor instance fill level bar
+                lvlControl.GetComponent<LevelControl>().FillLvlBar(); //after every meteor instance fill level bar
                 moveToTargetControl = true;
             }
         }
 
         if (moveToTargetControl)
         {
-            moveToTarget();
+            MoveToTarget();
         }
     }
 
-    public void insSplitMeteor(Vector3 scale, Vector3 pos, Quaternion rot, Color color, int parentDur) //instance split meteors
+    public void InstanceSplitMeteor(Vector3 scale, Vector3 pos, Quaternion rot, Color color, int parentDur) //instance split meteors
     {
         for (int i = 0; i < 2; i++)
         {
@@ -86,12 +84,12 @@ public class SpawnControl : MonoBehaviour
             if (i == 0)
             {
                 insSplitMet.transform.position += new Vector3(-0.3f, 0f, 0f);
-                insSplitMet.GetComponent<SplitMeteor>().bounceSplitMeteor(insSplitMet, "left");
+                insSplitMet.GetComponent<SplitMeteor>().BounceSplitMeteor(insSplitMet, "left");
             }
             else if(i == 1)
             {
                 insSplitMet.transform.position += new Vector3(0.3f, 0f, 0f);
-                insSplitMet.GetComponent<SplitMeteor>().bounceSplitMeteor(insSplitMet, "right");
+                insSplitMet.GetComponent<SplitMeteor>().BounceSplitMeteor(insSplitMet, "right");
             }
 
             // assign some values to split meteors
@@ -105,7 +103,7 @@ public class SpawnControl : MonoBehaviour
         }
     }
 
-    void chooseSpawnSide()
+    private void chooseSpawnSide()
     {
         float possibility = Random.Range(0f, 100f);
         if (possibility < 50f)
@@ -120,7 +118,7 @@ public class SpawnControl : MonoBehaviour
         }
     }
 
-    void moveToTarget()
+    private void MoveToTarget()
     {
         float step = 2 * Time.deltaTime; // calculate distance to move
         meteorClone.transform.position = Vector3.MoveTowards(meteorClone.transform.position, selectedTargetSide.position, step);
@@ -128,7 +126,7 @@ public class SpawnControl : MonoBehaviour
         {
             moveToTargetControl = false;
             meteorClone.GetComponent<SpawnedMeteor>().startControl = true;
-            meteorClone.GetComponent<SpawnedMeteor>().meteorActivate();
+            meteorClone.GetComponent<SpawnedMeteor>().MeteorActivate();
         }
     }
 }

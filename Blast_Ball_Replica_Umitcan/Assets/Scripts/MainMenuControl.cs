@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuControl : MonoBehaviour
 {
-    public void startGame()
+    public void StartGame()
     {
         SceneManager.LoadScene(1);
     }

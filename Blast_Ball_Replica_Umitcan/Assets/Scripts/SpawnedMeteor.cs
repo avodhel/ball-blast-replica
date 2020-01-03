@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class SpawnedMeteor : Meteor
 {
@@ -13,30 +10,30 @@ public class SpawnedMeteor : Meteor
 
     private new void Start()
     {
-        getComponents();
-        assignFeatures();
-        meteorActivate();
-        metDurability("determine");
+        GetComponents();
+        AssignFeatures();
+        MeteorActivate();
+        MeteorDurability("determine");
     }
 
-    protected override void metDurability(string condition)
+    protected override void MeteorDurability(string condition)
     {
-        base.metDurability(condition);
+        base.MeteorDurability(condition);
         if (condition == "determine")
         {
             parentDur = randDur; //save parent's durability
         }
     }
 
-    public void meteorActivate()
+    public void MeteorActivate()
     {
         if (startControl) //meteor is ready for game
         {
             physic.bodyType = RigidbodyType2D.Dynamic;
             gameObject.GetComponent<CircleCollider2D>().enabled = true;
 
-            bounceMeteor();
-            bounceAccToScale();
+            BounceMeteor();
+            BounceAccToScale();
         }
         else //meteor is still on the road
         {
@@ -45,7 +42,7 @@ public class SpawnedMeteor : Meteor
         }
     }
 
-    void assignFeatures()
+    private void AssignFeatures()
     {
         //random color
         sRenderer.color = colors[Random.Range(0, colors.Length)];
@@ -56,7 +53,7 @@ public class SpawnedMeteor : Meteor
         transform.localScale = new Vector3(scale, scale, scale);
     }
 
-    void bounceMeteor()
+    private void BounceMeteor()
     {
         if (gameObject.transform.position.x < 0) //when spawned left side
         {

@@ -8,7 +8,7 @@ public class SoundControl : MonoBehaviour
 {
     public SoundsList[] sounds; 
 
-    void Awake() 
+    private void Awake() 
     {
         foreach (SoundsList s in sounds)
         {
@@ -21,7 +21,7 @@ public class SoundControl : MonoBehaviour
         }
     }
 
-    public void playSound(string _soundName)
+    public void PlaySound(string _soundName)
     {
         SoundsList s = Array.Find(sounds, sound => sound.soundName == _soundName);
         if (s == null)
