@@ -6,7 +6,7 @@ A game which I developed in 3 days for a job application
 
 ## LINKS
 
-- [Itch.io](https://nordicebear.itch.io/ball-blast-replica)
+- [Itch.io](https://avodhel.itch.io/ball-blast-replica)
 
 ## CREDITS
 
